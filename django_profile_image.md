@@ -1,8 +1,55 @@
 # Profile Images in Django
 
+This guide will walk throught the steps necessary adding a `profile_image` to an instance of a user model. 
+
+The project in this guide will be setup in a [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/) environment and all commands will be issed from within the environment unless otherwise noted. Commands will be executed on a Linux terminal.
+
+## Project Setup
+
+Create a directory for your project and navigate into it
+
+    $ mkdir <PROJECT_NAME>
+    $ cd <PROJECT_NAME>
+
+Create the Pipenv environment
+
+    $ pipenv shell
+
+Install Django
+
+    $ pipenv install django
+
+Start a Django project
+
+    $ django-admin startproject <PROJECT_NAME> .
+
+The dot after `<PROJECT_NAME>` will tell Django to start the project in the current directory.
+
+Create `users` app
+
+    $ python manage.py startapp users
+
+Create `profile_images` app
+
+    $ python manage.py startapp profile_images
+
+In your project's `settings.py`, add `users` and `profile_images` to the list of installed apps.
+
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        ...
+        ...
+        ...
+        'users',           # add this
+        'profile_images',  # add this
+    ]
+
 ## Custom User Model
 
-Link to tutorial for extending user model
+We will need to extend the built-in `AbstractUser` model in order to add extra fields to our `CustomUser` model. 
+
+A guide for setting up the `CustomUser` model can be found [here](https://github.com/dirtTastesGood/simplified_guides/blob/master/custom_user_model.md)
 
 ## PIL
 
