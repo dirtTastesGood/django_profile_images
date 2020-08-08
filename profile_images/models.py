@@ -2,7 +2,7 @@ from django.db import models
 
 class ProfileImage(models.Model):
     image = models.ImageField(
-        'profile image',
+        verbose_name='profile image',
         default='profile_images/default.jpg',
         upload_to='profile_images'
     )
