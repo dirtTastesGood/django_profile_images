@@ -4,7 +4,10 @@
 
     <h1>Sign Up</h1>
 
-    <form action="{ url 'users:signup' }">
+    <!-- POST the form to the signup view on Submit -->
+    <form action="{ url 'users:signup' }" method="POST">
+        
+        <!-- render form fields manually -->
         <p>
             Username: <br>
             {{ form.username }}
