@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, reverse
-from .forms import UserSignupForm
+
 from .models import CustomUser
+from .forms import UserSignupForm
+
 from profile_images.models import ProfileImage
+from profile_images.forms import ProfileImageUpdateForm
 
 def signup(request):
     # blank instance of UserCreationForm
@@ -49,6 +52,10 @@ def users_list(request):
 
 def profile(request):
 
-    context = {}
+    image_form = ProfileImageUpdateForm(instance=request.user.profile_image)
+
+    context = {
+        'img_form': image_form,
+    }
 
     return(render(request, 'profile.html', context))
