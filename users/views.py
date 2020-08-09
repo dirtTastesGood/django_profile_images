@@ -42,6 +42,13 @@ def users_list(request):
     
     return render(request, 'user-list.html', context) 
 
-def profile(request, id):
+def profile(request, pk):
 
-    return(request, 'profile.html')
+    user = CustomUser.objects.get(pk=pk)
+
+
+    context = {
+        'user': user
+    }
+
+    return(render(request, 'profile.html', context))

@@ -4,9 +4,7 @@
 
     <h1>Login</h1>
 
-    <form method="POST">
-
-        <!-- POST the form to the signup view on Submit -->
+    <!-- POST the form to the login view on login -->
     <form method="POST">
         {% csrf_token %}
 
@@ -30,6 +28,9 @@
         <input type="submit" value="Submit">
     </form>
 
-    </form>
+    <p>
+        Need an account?
+        <a href="{% url 'users:signup'%}">Sign Up</a>
+    </p>
 
 {% endblock %}
