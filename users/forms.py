@@ -1,13 +1,13 @@
 from django import forms
-from users.models import CustomUser, ProfileImage
-from django.contrib.auth.forms import UserCreationForm, UserUpdateForm
+from django.contrib.auth.forms import UserCreationForm
 
+from .models import CustomUser
+
+# extend UserCreationForm
 class UserSignupForm(UserCreationForm):
     class Meta:
+        # the model on which to base the form
         model = CustomUser
-        fields = ['email', 'password1', 'password2']
 
-class ProfileImageUpdateForm(forms.ModelForm):
-    class Meta:
-        model = ProfileImage
-        fields = ['image']
+        # these fields will show up when the form is rendered
+        fields = ['username', 'password1', 'password2']

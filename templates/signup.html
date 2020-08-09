@@ -2,6 +2,24 @@
 
 {% block content %}
 
-<h1>Sign Up</h1>
+    <h1>Sign Up</h1>
+
+    <form action="{ url 'users:signup' }">
+        <p>
+            Username: <br>
+            {{ form.username }}
+        </p>
+
+        <p>
+            Password: <br>
+            {{ form.password1 }}
+        </p>
+        <p>
+            Verify Password: <br>
+            {{ form.password2 }}
+        </p>
+        
+        <input type="submit" value="Submit">
+    </form>
 
 {% endblock %}
