@@ -8,8 +8,10 @@
     <form method="POST">
         {% csrf_token %}
 
-        <!-- render form fields manually -->
+        <!-- Render form errors if any -->
+        {{ form.non_field_errors }}
 
+        <!-- render form fields manually -->
         <p>
             Username: <br>
             {{ form.username }}
