@@ -4,10 +4,13 @@
 
 <h1>{{ user.username }}'s profile</h1>
 
+<img src="/media/profile_images/{{ user.profile_image.image.name }}" alt="">
+
 <!-- enctype="multipart/form-data" is
     required to be able to upload the file -->
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
+
 
   <!-- The field label will be styled and used
         as the button to bring up the file select menu.

@@ -51,12 +51,13 @@ def users_list(request):
     return render(request, 'user-list.html', context) 
 
 def profile(request):
+    
+    image_form = ProfileImageUpdateForm()
 
     if request.method == 'POST':
         image_form = ProfileImageUpdateForm(data=request.POST, files=request.FILES)
-        
+        image_form.save()
 
-    image_form = ProfileImageUpdateForm()
 
     context = {
         'img_form': image_form,
