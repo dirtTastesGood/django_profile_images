@@ -1,5 +1,6 @@
 .vscode
 __pycache__/
 *.sqlite3
-media/profile_images/*.jpg
+
+media/profile_images/
 !media/profile_images/default.jpg
