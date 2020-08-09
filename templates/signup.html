@@ -8,25 +8,32 @@
     <form method="POST">
         {% csrf_token %}
 
-        {% if form.errors %}
-            {{ form.errors }}
-        {% endif %}
         <!-- render form fields manually -->
+
         <p>
             Username: <br>
             {{ form.username }}
+            {{ form.username.errors }}
         </p>
 
         <p>
             Password: <br>
             {{ form.password1 }}
+            {{ form.password1.errors }}
+
         </p>
         <p>
             Verify Password: <br>
             {{ form.password2 }}
+            {{ form.password2.errors }}
         </p>
         
         <input type="submit" value="Submit">
     </form>
+
+    <p>
+        Already have an account?
+        <a href="{% url 'users:login' %}">Login</a>
+    </p>
 
 {% endblock %}

@@ -15,8 +15,14 @@ def signup(request):
         if form.is_valid():
             form.save()
 
-            # if the form is saved, redirect to the user list template
-            return redirect(reverse('login'))
+            # if the form is saved, redirect to the login template
+            return redirect(reverse('users:login'))
+
+    context = {
+        "form": form
+    }
+
+    return render(request, 'signup.html' ,context)
 
     # pass to template
     context = {
@@ -24,6 +30,7 @@ def signup(request):
     }
 
     return render(request, 'signup.html', context)
+
 
 def users_list(request):
 
