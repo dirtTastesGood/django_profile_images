@@ -52,12 +52,23 @@ def users_list(request):
 
 def profile(request):
     
+    # blank image form
     image_form = ProfileImageUpdateForm()
 
+    # when the form is submitted
     if request.method == 'POST':
+        # instance of form with data and files from request
         image_form = ProfileImageUpdateForm(data=request.POST, files=request.FILES)
-        image_form.save()
+        
+        # validate the form
+        if image_form.is_valid():
+            new_profile_image = image_form.save(commit=False)
 
+            request.user.profile_image = new_profile_image
+
+            image_form.save()
+
+            
 
     context = {
         'img_form': image_form,
