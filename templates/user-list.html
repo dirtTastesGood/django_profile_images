@@ -6,7 +6,7 @@
 <ul>
     {% for usr in users %}
         <li>
-            <a href="{% url 'users:profile' usr.pk %}">
+            <a href="{% url 'users:profile'%}">
                 {{ usr.username }}
             </a>
         </li>

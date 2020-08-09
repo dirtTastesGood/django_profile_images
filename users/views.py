@@ -52,7 +52,11 @@ def users_list(request):
 
 def profile(request):
 
-    image_form = ProfileImageUpdateForm(instance=request.user.profile_image)
+    if request.method == 'POST':
+        image_form = ProfileImageUpdateForm(data=request.POST, files=request.FILES)
+        
+
+    image_form = ProfileImageUpdateForm()
 
     context = {
         'img_form': image_form,
