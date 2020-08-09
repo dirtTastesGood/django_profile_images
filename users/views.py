@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import UserSignupForm
 from .models import CustomUser
+from profile_images.models import ProfileImage
 
 def signup(request):
     # blank instance of UserCreationForm
@@ -13,7 +14,18 @@ def signup(request):
 
         # validate the form
         if form.is_valid():
-            form.save()
+
+            # create a model object but don't save it yet
+            new_user = form.save(commit=False)
+
+            # create a new profile image object
+            profile_image = ProfileImage.objects.create()
+
+            # associate the profile image to the new user
+            new_user.profile_image = profile_image
+
+            # save new CustomUser instance
+            new_user.save()
 
             # if the form is saved, redirect to the login template
             return redirect(reverse('users:login'))
@@ -23,13 +35,6 @@ def signup(request):
     }
 
     return render(request, 'signup.html' ,context)
-
-    # pass to template
-    context = {
-        'form':form
-    }
-
-    return render(request, 'signup.html', context)
 
 
 def users_list(request):
@@ -42,13 +47,8 @@ def users_list(request):
     
     return render(request, 'user-list.html', context) 
 
-def profile(request, pk):
+def profile(request):
 
-    user = CustomUser.objects.get(pk=pk)
-
-
-    context = {
-        'user': user
-    }
+    context = {}
 
     return(render(request, 'profile.html', context))

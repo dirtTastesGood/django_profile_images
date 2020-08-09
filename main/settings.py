@@ -107,3 +107,5 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'users:profile'
