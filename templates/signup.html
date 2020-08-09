@@ -5,8 +5,12 @@
     <h1>Sign Up</h1>
 
     <!-- POST the form to the signup view on Submit -->
-    <form action="{ url 'users:signup' }" method="POST">
-        
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            {{ form.errors }}
+        {% endif %}
         <!-- render form fields manually -->
         <p>
             Username: <br>

@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .forms import UserSignupForm
+from .models import CustomUser
 
 def signup(request):
     # blank instance of UserCreationForm
@@ -10,10 +11,12 @@ def signup(request):
         # create a form with the form data from the request
         form = UserSignupForm(request.POST)    
 
-
+        # validate the form
         if form.is_valid():
             form.save()
 
+            # if the form is saved, redirect to the user list template
+            return redirect(reverse('login'))
 
     # pass to template
     context = {
@@ -22,8 +25,15 @@ def signup(request):
 
     return render(request, 'signup.html', context)
 
-def user_list(request):
-    return render(request, 'user-list.html') 
+def users_list(request):
+
+    users = CustomUser.objects.all()
+
+    context = {
+        'users': users
+    }
+    
+    return render(request, 'user-list.html', context) 
 
 def profile(request, id):
 

@@ -3,5 +3,14 @@
 {% block content %}
 
 <h1>Users</h1>
+<ul>
+    {% for usr in users %}
+        <li>
+            {{ usr.username }}
+        </li>
+    {% empty %}
+        No users
+    {% endfor%}
+</ul>
 
 {% endblock %}
