@@ -5,13 +5,12 @@ from profile_images.models import ProfileImage
 class CustomUser(AbstractUser):
     profile_image = models.OneToOneField(
         ProfileImage,
-        default=1,
-        on_delete = models.SET_DEFAULT,
+        null=True,
+        on_delete = models.SET_NULL
     )
 
-    def set_profile_image(self, new_image):
-        pass
-
+    def has_profile_image(self):
+        return self.profile_image is not None
 
     def __str__(self):
         return self.username
